@@ -38,8 +38,10 @@ jobs:
           echo "BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive" >> Boardconfig.mk
           echo "BOARD_RECOVERYIMAGE_PARTITION_SIZE := 2147483648" >> Boardconfig.mk
 
-          # Modify Android.mk or relevant files to adapt for TWRP (e.g., remove boot image specific files)
-          sed -i '/BOARD_KERNEL_CMDLINE/d' Android.mk
+          # Check if lineage_larry.mk exists and modify it
+          if [ -f lineage_larry.mk ]; then
+            sed -i '/BOARD_KERNEL_CMDLINE/d' lineage_larry.mk
+          fi
 
           # Other necessary TWRP specific changes (add recovery configurations, etc.)
           # Example: Set up kernel configs for TWRP if needed
